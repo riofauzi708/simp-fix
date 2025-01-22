@@ -57,21 +57,19 @@ class SalaryController extends Controller
     // Menyimpan data gaji baru
     public function store(Request $request)
     {
+        $request->merge(['company_id' => Auth::user()->company_id]); // Tambahkan company_id dari pengguna yang login
+
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
-            'company_id' => 'required|exists:companies,id',
             'payment_date' => 'required|date',
             'amount' => 'required|numeric',
             'note' => 'nullable|string',
         ]);
 
-        // Menambahkan company_id dari pengguna yang sedang login
-        $request->merge(['company_id' => Auth::user()->company_id]);
-
-        Salary::create($request->all());
-
+        Salary::create($request->all()); // Menyimpan semua data
         return redirect()->route('salaries.index');
     }
+
 
     // Menampilkan form untuk mengedit data gaji
     public function edit(Salary $salary)

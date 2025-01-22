@@ -227,7 +227,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('attendances.index') }}" class="nav-link">
-                            <i class="fas fa-clipboard-list"></i> Absensi
+                            <i class="fas fa-clipboard-list"></i> Data Absensi
                         </a>
                     </li>
                     <li class="nav-item">
@@ -237,12 +237,11 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('company.show', ['company' => auth()->user()->company_id]) }}" class="nav-link">
-                            <i class="fas fa-building"></i> Profil Perusahaan
+                            <i class="fas fa-building"></i> Perusahaan
                         </a>
-
                     </li>
                     <li class="nav-item">
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-logout">Logout</button>
                         </form>
@@ -254,6 +253,7 @@
                     @endauth
                 </ul>
             </nav>
+
         </div>
     </header>
 
